@@ -7,8 +7,9 @@
   vars:
       region: ap-south-1
       instance_type: t2.micro
-      ami: ami-01e074f40dfb9999d  # Ubuntu 16.04 LTS
-      keypair: 01282020 # pem file name
+      ami: ami-079b5e5b3971bd10d  # Ubuntu 16.04 LTS
+      keypair: ibs22 # pem file name
+      subnet: subnet-080cb937a0dbafc59 # subnet
 
   vars_files:
      - pass.yml
@@ -19,7 +20,7 @@
          aws_access_key: "{{ aws_access_key }}"
          aws_secret_key: "{{ aws_secret_key }}"
          key_name: "{{ keypair }}"
-         group: JCP  # security group name
+         group: default  # security group name
          instance_type: "{{ instance_type}}"
          image: "{{ ami }}"
          wait: true
@@ -29,7 +30,7 @@
             Name: Demo
          instance_tags:
             Name: Demo
-         vpc_subnet_id: subnet-4a002f22
+         vpc_subnet_id: "{{ subnet }}"
          assign_public_ip: yes
       register: ec2_machine
       
